@@ -2,14 +2,12 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import Notiflix from 'notiflix';
 
-
 const select = document.querySelector('select');
 const container = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
 loader.classList.add('visually-hidden');
 error.classList.add('visually-hidden');
-
 
 fetchBreeds()
   .then(data => {
