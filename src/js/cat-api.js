@@ -22,8 +22,12 @@ export function fetchBreeds() {
 
 export function fetchCatByBreed(breedId) {
   const apiUrl = 'https://api.thecatapi.com/v1/images/search';
-
-  return axios
+  // let value = true;
+  // if (value) {
+  //   value = false;
+  //   return value;
+  // } 
+    return axios
     .get(apiUrl, {
       headers: {
         'x-api-key': axios.defaults.headers.common['x-api-key'],
@@ -39,4 +43,5 @@ export function fetchCatByBreed(breedId) {
 
       return resp.data;
     });
+  
 }
