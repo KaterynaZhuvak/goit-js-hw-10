@@ -20,7 +20,10 @@ fetchBreeds()
       data: dataArr,
     });
   })
-  .catch(() => Notiflix.Notify.failure(`${error.textContent}`));
+  .catch(() => {
+    Notiflix.Notify.failure(`${error.textContent}`);
+    select.classList.add('visually-hidden');
+  });
 
 select.addEventListener('change', event => {
   const breedId = event.currentTarget.value;
@@ -40,5 +43,9 @@ select.addEventListener('change', event => {
         container.innerHTML = markup;
       }, 2000);
     })
-    .catch(() => Notiflix.Notify.failure(`${error.textContent}`));
+    .catch(() => {
+      Notiflix.Notify.failure(`${error.textContent}`);
+      select.classList.add('visually-hidden');
+      container.innerHTML = '';
+    });
 });

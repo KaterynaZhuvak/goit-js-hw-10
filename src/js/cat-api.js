@@ -29,7 +29,7 @@ export function fetchCatByBreed(breedId) {
     value = false;
     return value;
   }
-  
+
   return axios
     .get(apiUrl, {
       headers: {
