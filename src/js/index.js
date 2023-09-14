@@ -9,6 +9,16 @@ const error = document.querySelector('.error');
 loader.classList.add('visually-hidden');
 error.classList.add('visually-hidden');
 
+function animalCard(info) {
+  const markup = `<div class='picture-container'>
+      <img class="picture" src="${info[0].url}" alt="${info[0].breeds[0].name}" height='300'/>
+    <h1>${info[0].breeds[0].name}</h1>
+    <p>${info[0].breeds[0].description}</p>
+    <p>Temperament: ${info[0].breeds[0].temperament}</p>
+    </div>`;
+  return markup;
+}
+
 fetchBreeds()
   .then(data => {
     const dataArr = data.map(element => ({
@@ -31,21 +41,14 @@ select.addEventListener('change', event => {
     .then(data => {
       container.classList.add('visually-hidden');
       loader.classList.remove('visually-hidden');
-      const markup = `<div class='picture-container'>
-      <img class="picture" src="${data[0].url}" alt="${data[0].breeds[0].name}" height='300'/>
-    <h1>${data[0].breeds[0].name}</h1>
-    <p>${data[0].breeds[0].description}</p>
-    <p>Temperament: ${data[0].breeds[0].temperament}</p>
-    </div>`;
       setTimeout(() => {
         container.classList.remove('visually-hidden');
         loader.classList.add('visually-hidden');
-        container.innerHTML = markup;
+        container.innerHTML = animalCard(data);
       }, 2000);
     })
     .catch(() => {
       Notiflix.Notify.failure(`${error.textContent}`);
-      select.classList.add('visually-hidden');
       container.innerHTML = '';
     });
 });
